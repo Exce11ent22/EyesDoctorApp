@@ -3,23 +3,53 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/mobile_navigation"
-    app:startDestination="@+id/navigation_home">
+    app:startDestination="@+id/navigation_diagnostics">
 
     <fragment
-        android:id="@+id/navigation_home"
-        android:name="com.vsu.eyesdoctorapp.ui.home.HomeFragment"
-        android:label="@string/title_home"
-        tools:layout="@layout/fragment_home" />
+        android:id="@+id/navigation_diagnostics"
+        android:name="com.vsu.eyesdoctorapp.ui.diagnostics.DiagnosticsFragment"
+        android:label="Диагностика"
+        tools:layout="@layout/fragment_diagnostics" />
 
     <fragment
-        android:id="@+id/navigation_dashboard"
-        android:name="com.vsu.eyesdoctorapp.ui.dashboard.DashboardFragment"
-        android:label="@string/title_dashboard"
-        tools:layout="@layout/fragment_dashboard" />
+        android:id="@+id/navigation_exercises"
+        android:name="com.vsu.eyesdoctorapp.ui.exercises.ExercisesFragment"
+        android:label="Упражнения"
+        tools:layout="@layout/fragment_exercises" />
 
     <fragment
-        android:id="@+id/navigation_notifications"
-        android:name="com.vsu.eyesdoctorapp.ui.notifications.NotificationsFragment"
-        android:label="@string/title_notifications"
-        tools:layout="@layout/fragment_notifications" />
+        android:id="@+id/navigation_recommendations"
+        android:name="com.vsu.eyesdoctorapp.ui.recommendations.RecommendationsFragment"
+        android:label="Рекомендации"
+        tools:layout="@layout/fragment_recommendations" />
+
+    <fragment
+        android:id="@+id/navigation_map"
+        android:name="com.vsu.eyesdoctorapp.ui.map.MapFragment"
+        android:label="Карта"
+        tools:layout="@layout/fragment_map" />
+
+    <fragment
+        android:id="@+id/navigation_settings"
+        android:name="com.vsu.eyesdoctorapp.ui.settings.SettingsFragment"
+        android:label="Настройки"
+        tools:layout="@layout/fragment_settings" />
+
+<!--    <fragment-->
+<!--        android:id="@+id/navigation_home"-->
+<!--        android:name="com.vsu.eyesdoctorapp.ui.home.HomeFragment"-->
+<!--        android:label="@string/title_home"-->
+<!--        tools:layout="@layout/fragment_home" />-->
+
+<!--    <fragment-->
+<!--        android:id="@+id/navigation_dashboard"-->
+<!--        android:name="com.vsu.eyesdoctorapp.ui.dashboard.DashboardFragment"-->
+<!--        android:label="@string/title_dashboard"-->
+<!--        tools:layout="@layout/fragment_dashboard" />-->
+
+<!--    <fragment-->
+<!--        android:id="@+id/navigation_notifications"-->
+<!--        android:name="com.vsu.eyesdoctorapp.ui.notifications.NotificationsFragment"-->
+<!--        android:label="@string/title_notifications"-->
+<!--        tools:layout="@layout/fragment_notifications" />-->
 </navigation>
