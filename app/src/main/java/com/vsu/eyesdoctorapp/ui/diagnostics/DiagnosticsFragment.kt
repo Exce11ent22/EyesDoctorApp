@@ -5,7 +5,13 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import com.github.mikephil.charting.animation.Easing
+import com.github.mikephil.charting.charts.LineChart
+import com.github.mikephil.charting.data.Entry
+import com.github.mikephil.charting.data.LineData
+import com.github.mikephil.charting.data.LineDataSet
 import com.vsu.eyesdoctorapp.R
+import kotlin.math.sin
 
 // TODO: Rename parameter arguments, choose names that match
 // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
@@ -36,6 +42,33 @@ class DiagnosticsFragment : Fragment() {
     ): View? {
         // Inflate the layout for this fragment
         return inflater.inflate(R.layout.fragment_diagnostics, container, false)
+    }
+
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        super.onViewCreated(view, savedInstanceState)
+        val leftChart: LineChart = view.findViewById(R.id.lc_left)
+        val rightChart: LineChart = view.findViewById(R.id.lc_right)
+
+        val dataList = ArrayList<Entry>()
+        val dataList2 = ArrayList<Entry>()
+
+        for (i in 1..100) {
+            dataList.add(Entry(i.toFloat(), sin(i.toFloat()/10)))
+            dataList2.add(Entry(i.toFloat(), sin(i.toFloat()/4)))
+        }
+        val lineDataSet = LineDataSet(dataList, "Hello world!")
+        val lineDataSet2 = LineDataSet(dataList2, "Hello world!")
+        val data = LineData(lineDataSet)
+        val data2 = LineData(lineDataSet2)
+        leftChart.animateX(3000, Easing.EaseOutSine)
+        rightChart.animateX(4500, Easing.EaseInSine)
+
+        leftChart.description.isEnabled = false
+        rightChart.description.isEnabled = false
+
+        leftChart.data = data
+        rightChart.data = data2
+
     }
 
     companion object {
