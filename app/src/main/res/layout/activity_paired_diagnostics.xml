@@ -1,0 +1,100 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".ui.diagnostics.PairedDiagnosticsActivity">
+
+    <TextView
+        android:id="@+id/tv_main_letter"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:fontFamily="@font/sivtsev"
+        android:gravity="center"
+        android:text="Ш"
+        android:textColor="@color/black"
+        android:textSize="35mm"
+        app:layout_constraintBottom_toTopOf="@id/ll_top"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <LinearLayout
+        android:id="@+id/ll_top"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:gravity="center"
+        android:orientation="horizontal"
+        app:layout_constraintBottom_toTopOf="@id/ll_bottom"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent">
+
+        <Button
+            android:id="@+id/btn_letter_sh"
+            style="?attr/materialButtonOutlinedStyle"
+            android:layout_width="@dimen/btn_box_size"
+            android:layout_height="@dimen/btn_box_size"
+            android:layout_margin="16dp"
+            android:text="Ш" />
+
+        <Button
+            android:id="@+id/btn_letter_b"
+            style="?attr/materialButtonOutlinedStyle"
+            android:layout_width="@dimen/btn_box_size"
+            android:layout_height="@dimen/btn_box_size"
+            android:layout_margin="@dimen/btn_box_margin"
+            android:text="Б" />
+
+        <Button
+            android:id="@+id/btn_letter_m"
+            style="?attr/materialButtonOutlinedStyle"
+            android:layout_width="@dimen/btn_box_size"
+            android:layout_height="@dimen/btn_box_size"
+            android:layout_margin="@dimen/btn_box_margin"
+            android:text="М" />
+
+        <Button
+            android:id="@+id/btn_letter_n"
+            style="?attr/materialButtonOutlinedStyle"
+            android:layout_width="@dimen/btn_box_size"
+            android:layout_height="@dimen/btn_box_size"
+            android:layout_margin="@dimen/btn_box_margin"
+            android:text="Н" />
+    </LinearLayout>
+
+    <LinearLayout
+        android:id="@+id/ll_bottom"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:gravity="center"
+        android:orientation="horizontal"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent">
+
+        <Button
+            android:id="@+id/btn_letter_k"
+            style="?attr/materialButtonOutlinedStyle"
+            android:layout_width="@dimen/btn_box_size"
+            android:layout_height="@dimen/btn_box_size"
+            android:layout_margin="@dimen/btn_box_margin"
+            android:text="К" />
+
+        <Button
+            android:id="@+id/btn_letter_bi"
+            style="?attr/materialButtonOutlinedStyle"
+            android:layout_width="@dimen/btn_box_size"
+            android:layout_height="@dimen/btn_box_size"
+            android:layout_margin="@dimen/btn_box_margin"
+            android:text="Ы" />
+
+        <Button
+            android:id="@+id/btn_letter_i"
+            style="?attr/materialButtonOutlinedStyle"
+            android:layout_width="@dimen/btn_box_size"
+            android:layout_height="@dimen/btn_box_size"
+            android:layout_margin="@dimen/btn_box_margin"
+            android:text="И" />
+    </LinearLayout>
+</androidx.constraintlayout.widget.ConstraintLayout>

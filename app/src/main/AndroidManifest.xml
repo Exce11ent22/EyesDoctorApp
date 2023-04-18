@@ -13,6 +13,13 @@
         android:theme="@style/MySplashScreen"
         tools:targetApi="31">
         <activity
+            android:name=".ui.diagnostics.DiagnosticsResultActivity"
+            android:exported="false" />
+        <activity
+            android:name=".ui.diagnostics.PairedDiagnosticsActivity"
+            android:exported="false"
+            android:theme="@style/Theme.EyesDoctorApp" />
+        <activity
             android:name=".MainActivity"
             android:exported="true">
             <intent-filter>
