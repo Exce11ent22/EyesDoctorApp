@@ -2,31 +2,31 @@
 <menu xmlns:android="http://schemas.android.com/apk/res/android">
 
     <item
-        android:id="@+id/navigation_diagnostics"
+        android:id="@+id/navigation_diagnostics_menu"
         android:icon="@drawable/ic_diagnostics"
         android:title="Диагностика" />
 
 
     <item
-        android:id="@+id/navigation_exercises"
+        android:id="@+id/navigation_exercises_menu"
         android:icon="@drawable/ic_exercises"
         android:title="Упражнения" />
 
 
     <item
-        android:id="@+id/navigation_recommendations"
+        android:id="@+id/navigation_recommendations_menu"
         android:icon="@drawable/ic_recommendations"
         android:title="Рекомендации" />
 
 
     <item
-        android:id="@+id/navigation_map"
+        android:id="@+id/navigation_map_menu"
         android:icon="@drawable/ic_map"
         android:title="Карта" />
 
 
     <item
-        android:id="@+id/navigation_settings"
+        android:id="@+id/navigation_settings_menu"
         android:icon="@drawable/ic_settings"
         android:title="Настройки" />
 
