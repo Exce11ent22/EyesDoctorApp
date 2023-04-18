@@ -6,19 +6,16 @@
     android:layout_height="match_parent"
     tools:context=".ui.diagnostics.PairedDiagnosticsActivity">
 
-    <TextView
-        android:id="@+id/tv_main_letter"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:fontFamily="@font/sivtsev"
-        android:gravity="center"
-        android:text="Ш"
-        android:textColor="@color/black"
-        android:textSize="35mm"
-        app:layout_constraintBottom_toTopOf="@id/ll_top"
-        app:layout_constraintEnd_toEndOf="parent"
+    <ImageView
+        android:id="@+id/iv_main_letter"
+        android:layout_width="35mm"
+        android:layout_height="35mm"
+        app:srcCompat="@drawable/im_letter_sh"
+        android:scaleType="fitCenter"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintBottom_toTopOf="@id/ll_top"/>
 
     <LinearLayout
         android:id="@+id/ll_top"
