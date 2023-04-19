@@ -1,14 +1,70 @@
 <?xml version="1.0" encoding="utf-8"?>
 <FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".ui.settings.SettingsMenuFragment">
 
-    <!-- TODO: Update blank fragment layout -->
-    <TextView
+    <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:text="Настройки" />
+        android:layout_height="match_parent">
 
+        <ImageView
+            android:id="@+id/iv_friend"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:src="@drawable/ic_friends"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            android:layout_marginTop="32dp"
+            android:layout_marginStart="32dp"/>
+
+        <ImageView
+            android:id="@+id/iv_double_arrow"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:src="@drawable/ic_double_arrow"
+            android:layout_marginTop="32dp"
+
+            app:layout_constraintStart_toStartOf="@id/iv_friend"
+            app:layout_constraintTop_toBottomOf="@id/iv_friend"/>
+
+        <TextView
+            android:id="@+id/tv_set_distance"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="TextView"
+            android:layout_marginStart="32dp"
+            app:layout_constraintStart_toEndOf="@id/iv_double_arrow"
+            app:layout_constraintTop_toTopOf="@id/iv_double_arrow"
+            app:layout_constraintBottom_toBottomOf="@id/iv_double_arrow"/>
+
+        <com.google.android.material.switchmaterial.SwitchMaterial
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:checked="true"
+            android:layout_marginStart="32dp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="@id/iv_friend"
+            app:layout_constraintBottom_toBottomOf="@id/iv_friend"
+            android:text="С другом"/>
+
+        <com.google.android.material.textfield.TextInputLayout
+            android:id="@+id/tf_set_distance"
+            android:layout_width="100dp"
+            android:layout_height="wrap_content"
+            android:hint="5 м."
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="@id/tv_set_distance"
+            app:layout_constraintBottom_toBottomOf="@id/tv_set_distance">
+
+            <com.google.android.material.textfield.TextInputEditText
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                />
+
+        </com.google.android.material.textfield.TextInputLayout>
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
 </FrameLayout>

@@ -1,30 +1,38 @@
 package com.vsu.eyesdoctorapp.service.diagnostics
 
-import com.vsu.eyesdoctorapp.R
 
 class SequenceGenerator {
 
     companion object {
         val instance = SequenceGenerator()
-        val alphabet = R.string.diagnostic_alphabet.toString()
+        val alphabet = LetterEnum.values()
         const val letterPerScale = 3
+        const val startScale = 1.0
+        const val endScale = 0.1
+        const val scaleStep = 0.1
     }
 
+    /**
+     * generating sequence of LetterScale elements
+     * using while from startScale to endScale
+     * decreasing scaleStep
+     * without repetitions of nearby elements
+     */
     fun generate() : ArrayList<LetterScale> {
-        var sequence = ArrayList<LetterScale>()
-        var tempLetter = '$'
-        for (scale in 1..10) {
+        val sequence = ArrayList<LetterScale>()
+        var tempLetter: LetterEnum? = null
+        var currentScale = startScale
+        while (currentScale >= endScale) {
             repeat (letterPerScale) {
-                var currentLetter = '$'
+                var currentLetter = alphabet.random()
                 while (currentLetter == tempLetter) {
                     currentLetter = alphabet.random()
                 }
                 tempLetter = currentLetter
-                sequence.add(LetterScale(currentLetter, scale.toDouble()/10))
+                sequence.add(LetterScale(currentLetter, currentScale))
             }
+            currentScale -= scaleStep
         }
-        sequence.reverse()
         return sequence
     }
-
 }
