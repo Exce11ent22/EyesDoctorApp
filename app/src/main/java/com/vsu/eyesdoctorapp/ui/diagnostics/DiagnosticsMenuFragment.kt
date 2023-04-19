@@ -15,6 +15,12 @@ import com.github.mikephil.charting.data.LineDataSet
 import com.vsu.eyesdoctorapp.R
 import kotlin.math.sin
 
+/* TODO
+* 1. Доделать информацию на экране
+* 2. Сделать свич на парную и одиночную диагностику
+* 3. Прокидывать вверх параметр, какой это глаз
+* 4. сделать настройку расстояния*/
+
 class DiagnosticsMenuFragment : Fragment() {
 
     override fun onCreateView(
@@ -34,7 +40,7 @@ class DiagnosticsMenuFragment : Fragment() {
             startActivity(i)
         }
         view.findViewById<Button>(R.id.btn_right).setOnClickListener {
-            val i = Intent(this.context, PairedDiagnosticsActivity::class.java)
+            val i = Intent(this.context, SingleDiagnosticsActivity::class.java)
             startActivity(i)
         }
     }

@@ -3,20 +3,21 @@ package com.vsu.eyesdoctorapp.ui.diagnostics
 import android.os.Bundle
 import android.util.Log
 import android.util.TypedValue
-import android.widget.Button
-import android.widget.ImageView
-import android.widget.LinearLayout
-import android.widget.TextView
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.view.isGone
 import com.vsu.eyesdoctorapp.R
+import com.vsu.eyesdoctorapp.databinding.ActivityPairedDiagnosticsBinding
 import com.vsu.eyesdoctorapp.service.diagnostics.LetterEnum
 import com.vsu.eyesdoctorapp.service.diagnostics.LetterScale
 import com.vsu.eyesdoctorapp.service.diagnostics.SequenceGenerator
 
+/* TODO
+* 1. Доделать алгоритм результатов
+* 2. получать параметр, какой это глаз*/
 
 class PairedDiagnosticsActivity : AppCompatActivity() {
 
+    private lateinit var binding: ActivityPairedDiagnosticsBinding
     private lateinit var sequenceGenerator: SequenceGenerator
     private lateinit var sequence: ArrayList<LetterScale>
 
@@ -24,7 +25,8 @@ class PairedDiagnosticsActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         supportActionBar?.hide()
 
-        setContentView(R.layout.activity_paired_diagnostics)
+        binding = ActivityPairedDiagnosticsBinding.inflate(layoutInflater)
+        setContentView(binding.root)
 
         // get sequence
         sequenceGenerator = SequenceGenerator.instance
@@ -65,12 +67,12 @@ class PairedDiagnosticsActivity : AppCompatActivity() {
     }
 
     private fun changeImageBySequence() {
-        if (sequence.size > 0){
+        if (sequence.size > 0) {
             // get element
             val currentLetter = sequence.removeLast()
 
             // change image
-            val mainImage = findViewById<ImageView>(R.id.iv_main_letter)
+            val mainImage = binding.ivMainLetter
             mainImage.setImageResource(getResourceByLetter(currentLetter.letter))
 
             val layoutParams = mainImage.layoutParams
@@ -82,14 +84,14 @@ class PairedDiagnosticsActivity : AppCompatActivity() {
             mainImage.layoutParams = layoutParams
         } else {
             // show
-            findViewById<Button>(R.id.btn_back).isGone = false
-            findViewById<TextView>(R.id.tv_result_percentage).isGone = false
-            findViewById<TextView>(R.id.tv_result_text).isGone = false
+            binding.btnBack.isGone = false
+            binding.tvResultPercentage.isGone = false
+            binding.tvResultText.isGone = false
 
             // hide
-            findViewById<ImageView>(R.id.iv_main_letter).isGone = true
-            findViewById<LinearLayout>(R.id.ll_top).isGone = true
-            findViewById<LinearLayout>(R.id.ll_bottom).isGone = true
+            binding.ivMainLetter.isGone = true
+            binding.llTop.isGone = true
+            binding.llBottom.isGone = true
         }
     }
 
@@ -101,32 +103,32 @@ class PairedDiagnosticsActivity : AppCompatActivity() {
     }
 
     private fun configureButtons() {
-        findViewById<Button>(R.id.btn_letter_sh).setOnClickListener {
+        binding.btnLetterSh.setOnClickListener {
             changeImageBySequence()
         }
-        findViewById<Button>(R.id.btn_letter_b).setOnClickListener {
+        binding.btnLetterB.setOnClickListener {
             changeImageBySequence()
         }
-        findViewById<Button>(R.id.btn_letter_m).setOnClickListener {
+        binding.btnLetterM.setOnClickListener {
             changeImageBySequence()
         }
-        findViewById<Button>(R.id.btn_letter_n).setOnClickListener {
+        binding.btnLetterN.setOnClickListener {
             changeImageBySequence()
         }
-        findViewById<Button>(R.id.btn_letter_k).setOnClickListener {
+        binding.btnLetterK.setOnClickListener {
             changeImageBySequence()
         }
-        findViewById<Button>(R.id.btn_letter_bi).setOnClickListener {
+        binding.btnLetterBi.setOnClickListener {
             changeImageBySequence()
         }
-        findViewById<Button>(R.id.btn_letter_i).setOnClickListener {
+        binding.btnLetterI.setOnClickListener {
             changeImageBySequence()
         }
-        findViewById<Button>(R.id.btn_letter_none).setOnClickListener {
+        binding.btnLetterNone.setOnClickListener {
             changeImageBySequence()
         }
 
-        findViewById<Button>(R.id.btn_back).setOnClickListener {
+        binding.btnBack.setOnClickListener {
             onBackPressed()
         }
     }
