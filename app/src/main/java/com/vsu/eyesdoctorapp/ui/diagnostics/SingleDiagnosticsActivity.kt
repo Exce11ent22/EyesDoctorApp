@@ -1,10 +1,12 @@
 package com.vsu.eyesdoctorapp.ui.diagnostics
 
+import android.content.pm.PackageManager
 import android.os.Bundle
 import android.os.CountDownTimer
 import android.util.Log
 import android.util.TypedValue
 import androidx.appcompat.app.AppCompatActivity
+import androidx.core.content.ContextCompat
 import androidx.core.view.isGone
 import com.vsu.eyesdoctorapp.R
 import com.vsu.eyesdoctorapp.databinding.ActivitySingleDiagnosticsBinding
@@ -40,9 +42,9 @@ class SingleDiagnosticsActivity : AppCompatActivity() {
 
         changeImage()
 
-        object: CountDownTimer(5000, 1000) {
+        object : CountDownTimer(5000, 1000) {
             override fun onTick(p0: Long) {
-                binding.tvStartTimer.text = "${p0/1000}"
+                binding.tvStartTimer.text = "${p0 / 1000}"
             }
 
             override fun onFinish() {
@@ -55,7 +57,7 @@ class SingleDiagnosticsActivity : AppCompatActivity() {
 
     }
 
-    private fun changeImage(){
+    private fun changeImage() {
         if (sequence.isEmpty()) return
 
         // get element
@@ -104,10 +106,10 @@ class SingleDiagnosticsActivity : AppCompatActivity() {
         return (7.0 / scale)
     }
 
-    private fun startMainTimer(){
-        object: CountDownTimer(5000, 100) {
+    private fun startMainTimer() {
+        object : CountDownTimer(5000, 100) {
             override fun onTick(p0: Long) {
-                binding.tvTimer.text = String.format("TIMER %.1f s", p0.toDouble()/1000)
+                binding.tvTimer.text = String.format("TIMER %.1f s", p0.toDouble() / 1000)
             }
 
             override fun onFinish() {

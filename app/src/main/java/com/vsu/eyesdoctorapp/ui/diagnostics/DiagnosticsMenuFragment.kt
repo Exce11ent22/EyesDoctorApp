@@ -1,12 +1,16 @@
 package com.vsu.eyesdoctorapp.ui.diagnostics
 
+import android.app.AlertDialog
+import android.content.DialogInterface
 import android.content.Intent
+import android.content.pm.PackageManager
 import android.os.Bundle
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Button
+import androidx.core.content.ContextCompat
 import com.github.mikephil.charting.animation.Easing
 import com.github.mikephil.charting.charts.LineChart
 import com.github.mikephil.charting.data.Entry
@@ -36,12 +40,10 @@ class DiagnosticsMenuFragment : Fragment() {
         drawCharts(view)
 
         view.findViewById<Button>(R.id.btn_left).setOnClickListener {
-            val i = Intent(this.context, PairedDiagnosticsActivity::class.java)
-            startActivity(i)
+            startPairedDiagnostics()
         }
         view.findViewById<Button>(R.id.btn_right).setOnClickListener {
-            val i = Intent(this.context, SingleDiagnosticsActivity::class.java)
-            startActivity(i)
+            startSingleDiagnostics()
         }
     }
 
@@ -68,5 +70,41 @@ class DiagnosticsMenuFragment : Fragment() {
 
         leftChart.data = data
         rightChart.data = data2
+    }
+
+    private fun startPairedDiagnostics() {
+        val i = Intent(this.context, PairedDiagnosticsActivity::class.java)
+        startActivity(i)
+    }
+
+    private fun startSingleDiagnostics() {
+        when {
+            ContextCompat.checkSelfPermission(
+                requireContext(),
+                android.Manifest.permission.RECORD_AUDIO
+            ) == PackageManager.PERMISSION_GRANTED -> {
+                val i = Intent(this.context, SingleDiagnosticsActivity::class.java)
+                startActivity(i)
+            }
+            shouldShowRequestPermissionRationale(android.Manifest.permission.RECORD_AUDIO) -> {
+            // In an educational UI, explain to the user why your app requires this
+            // permission for a specific feature to behave as expected, and what
+            // features are disabled if it's declined. In this UI, include a
+            // "cancel" or "no thanks" button that lets the user continue
+            // using your app without granting the permission.
+                val builder = AlertDialog.Builder(requireContext())
+                builder.setTitle("Необходимо разрешене")
+                builder.setMessage("Для проведения диагностики необходимо записывать аудио. Добавьте разрешение на запись аудио.")
+                builder.setPositiveButton("Хорошо") { dialogInterface: DialogInterface, i: Int ->
+                    dialogInterface.cancel()
+                }
+                builder.show()
+            }
+            else -> {
+                // You can directly ask for the permission.
+                requestPermissions(arrayOf(android.Manifest.permission.RECORD_AUDIO),
+                    12345678)
+            }
+        }
     }
 }
