@@ -10,6 +10,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Button
+import androidx.core.app.ActivityCompat
 import androidx.core.content.ContextCompat
 import com.github.mikephil.charting.animation.Easing
 import com.github.mikephil.charting.charts.LineChart
@@ -26,6 +27,8 @@ import kotlin.math.sin
 * 4. сделать настройку расстояния*/
 
 class DiagnosticsMenuFragment : Fragment() {
+
+    private val RECORD_AUDIO_REQ_CODE = 1001
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -102,8 +105,11 @@ class DiagnosticsMenuFragment : Fragment() {
             }
             else -> {
                 // You can directly ask for the permission.
-                requestPermissions(arrayOf(android.Manifest.permission.RECORD_AUDIO),
-                    12345678)
+                ActivityCompat.requestPermissions(
+                    this.requireActivity(),
+                    arrayOf(android.Manifest.permission.RECORD_AUDIO),
+                    RECORD_AUDIO_REQ_CODE
+                )
             }
         }
     }
