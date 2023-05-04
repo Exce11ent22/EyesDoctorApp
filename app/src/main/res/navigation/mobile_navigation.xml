@@ -18,22 +18,10 @@
         tools:layout="@layout/fragment_exercises_menu" />
 
     <fragment
-        android:id="@+id/navigation_recommendations_menu"
-        android:name="com.vsu.eyesdoctorapp.ui.recommendations.RecommendationsMenuFragment"
-        android:label="Рекомендации"
-        tools:layout="@layout/fragment_recommendations_menu" />
-
-    <fragment
         android:id="@+id/navigation_map_menu"
         android:name="com.vsu.eyesdoctorapp.ui.map.MapMenuFragment"
         android:label="Карта"
         tools:layout="@layout/fragment_map_menu" />
-
-    <fragment
-        android:id="@+id/navigation_settings_menu"
-        android:name="com.vsu.eyesdoctorapp.ui.settings.SettingsMenuFragment"
-        android:label="Настройки"
-        tools:layout="@layout/fragment_settings_menu" />
 
 <!--    <fragment-->
 <!--        android:id="@+id/navigation_home"-->

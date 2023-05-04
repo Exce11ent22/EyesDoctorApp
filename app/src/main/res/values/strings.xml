@@ -18,6 +18,16 @@
         <item>\?</item>
     </string-array>
 
+<!--    distances-->
+    <string-array name="distances">
+        <item>5 м.</item>
+        <item>4,5 м.</item>
+        <item>4 м.</item>
+        <item>3,5 м.</item>
+        <item>3 м.</item>
+        <item>2,5 м.</item>
+    </string-array>
+
     <!--    diagnostics resources-->
     <string name="diagnostic_alphabet">ШБМНКЫИ</string>
     <!-- TODO: Remove or change this placeholder text -->

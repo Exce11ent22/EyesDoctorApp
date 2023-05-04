@@ -14,21 +14,9 @@
 
 
     <item
-        android:id="@+id/navigation_recommendations_menu"
-        android:icon="@drawable/ic_recommendations"
-        android:title="Рекомендации" />
-
-
-    <item
         android:id="@+id/navigation_map_menu"
         android:icon="@drawable/ic_map"
         android:title="Карта" />
-
-
-    <item
-        android:id="@+id/navigation_settings_menu"
-        android:icon="@drawable/ic_settings"
-        android:title="Настройки" />
 
 <!--    <item-->
 <!--        android:id="@+id/navigation_home"-->

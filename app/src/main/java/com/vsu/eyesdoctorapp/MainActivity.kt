@@ -35,9 +35,7 @@ class MainActivity : AppCompatActivity() {
             setOf(
                 R.id.navigation_diagnostics_menu,
                 R.id.navigation_exercises_menu,
-                R.id.navigation_recommendations_menu,
                 R.id.navigation_map_menu,
-                R.id.navigation_settings_menu
             )
         )
         setupActionBarWithNavController(navController, appBarConfiguration)

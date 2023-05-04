@@ -5,18 +5,26 @@ import android.content.DialogInterface
 import android.content.Intent
 import android.content.pm.PackageManager
 import android.os.Bundle
+import android.util.Log
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.ArrayAdapter
 import android.widget.Button
+import android.widget.Spinner
+import android.widget.Switch
 import androidx.core.app.ActivityCompat
+import androidx.core.app.ActivityCompat.shouldShowRequestPermissionRationale
+import androidx.core.content.ContentProviderCompat.requireContext
 import androidx.core.content.ContextCompat
+import androidx.core.content.ContextCompat.startActivity
 import com.github.mikephil.charting.animation.Easing
 import com.github.mikephil.charting.charts.LineChart
 import com.github.mikephil.charting.data.Entry
 import com.github.mikephil.charting.data.LineData
 import com.github.mikephil.charting.data.LineDataSet
+import com.google.android.material.switchmaterial.SwitchMaterial
 import com.vsu.eyesdoctorapp.R
 import kotlin.math.sin
 
@@ -29,6 +37,7 @@ import kotlin.math.sin
 class DiagnosticsMenuFragment : Fragment() {
 
     private val RECORD_AUDIO_REQ_CODE = 1001
+    private var isPaired = true
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -43,10 +52,21 @@ class DiagnosticsMenuFragment : Fragment() {
         drawCharts(view)
 
         view.findViewById<Button>(R.id.btn_left).setOnClickListener {
-            startPairedDiagnostics()
+            startDiagnostics(view)
         }
         view.findViewById<Button>(R.id.btn_right).setOnClickListener {
-            startSingleDiagnostics()
+            startDiagnostics(view)
+        }
+
+        // TODO refactor this
+        val chooseDistanceSpinner = view.findViewById<Spinner>(R.id.spn_choose_distance)
+        ArrayAdapter.createFromResource(
+            requireContext(),
+            R.array.distances,
+            android.R.layout.simple_spinner_dropdown_item
+        ).also { adapter ->
+            adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item)
+            chooseDistanceSpinner.adapter = adapter
         }
     }
 
@@ -61,8 +81,8 @@ class DiagnosticsMenuFragment : Fragment() {
             dataList.add(Entry(i.toFloat(), sin(i.toFloat()/10)))
             dataList2.add(Entry(i.toFloat(), sin(i.toFloat()/4)))
         }
-        val lineDataSet = LineDataSet(dataList, "Hello world!")
-        val lineDataSet2 = LineDataSet(dataList2, "Hello world!")
+        val lineDataSet = LineDataSet(dataList, "Последние N измерений")
+        val lineDataSet2 = LineDataSet(dataList2, "Последние N измерений")
         val data = LineData(lineDataSet)
         val data2 = LineData(lineDataSet2)
         leftChart.animateX(3000, Easing.EaseOutSine)
@@ -73,6 +93,15 @@ class DiagnosticsMenuFragment : Fragment() {
 
         leftChart.data = data
         rightChart.data = data2
+    }
+
+    private fun startDiagnostics(view: View) {
+        Log.d("SWITCH", "${view.findViewById<SwitchMaterial>(R.id.sw_friend).isChecked}")
+        if (view.findViewById<SwitchMaterial>(R.id.sw_friend).isChecked) {
+            startPairedDiagnostics()
+        } else {
+            startSingleDiagnostics()
+        }
     }
 
     private fun startPairedDiagnostics() {
