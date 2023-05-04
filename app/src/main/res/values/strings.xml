@@ -4,6 +4,20 @@
     <string name="title_dashboard">Dashboard</string>
     <string name="title_notifications">Notifications</string>
 
+    <string name="letter_number">Буква №%d</string>
+
+<!--    alphabet for table-->
+    <string-array name="letters">
+        <item>Ш</item>
+        <item>Б</item>
+        <item>М</item>
+        <item>Н</item>
+        <item>К</item>
+        <item>Ы</item>
+        <item>И</item>
+        <item>\?</item>
+    </string-array>
+
     <!--    diagnostics resources-->
     <string name="diagnostic_alphabet">ШБМНКЫИ</string>
     <!-- TODO: Remove or change this placeholder text -->

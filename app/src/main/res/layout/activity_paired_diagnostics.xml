@@ -1,144 +1,156 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".ui.diagnostics.PairedDiagnosticsActivity">
 
-    <Button
-        android:id="@+id/btn_back"
-        style="@style/Widget.MaterialComponents.Button.Icon"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_margin="@dimen/btn_box_margin"
-        android:text="На главную"
-        android:visibility="gone"
-        app:icon="@drawable/ic_arrow_left"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
-
-    <ImageView
-        android:id="@+id/iv_main_letter"
-        android:layout_width="35mm"
-        android:layout_height="35mm"
-        android:scaleType="fitCenter"
-        app:layout_constraintBottom_toTopOf="@id/ll_top"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:srcCompat="@drawable/im_letter_sh" />
-
-    <LinearLayout
-        android:id="@+id/ll_top"
+<!--    diagnostics-->
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/cl_input"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:gravity="center"
-        android:orientation="horizontal"
-        app:layout_constraintBottom_toTopOf="@id/ll_bottom"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent">
+        android:layout_height="match_parent"
+        android:visibility="visible">
 
-        <Button
-            android:id="@+id/btn_letter_sh"
-            style="?attr/materialButtonOutlinedStyle"
-            android:layout_width="@dimen/btn_box_size"
-            android:layout_height="@dimen/btn_box_size"
-            android:layout_margin="@dimen/btn_box_margin"
-            android:text="Ш" />
+        <ImageView
+            android:id="@+id/iv_main_letter"
+            android:layout_width="35sp"
+            android:layout_height="35sp"
+            android:scaleType="fitCenter"
+            app:layout_constraintBottom_toTopOf="@id/ll_top"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:srcCompat="@drawable/im_letter_sh" />
 
-        <Button
-            android:id="@+id/btn_letter_b"
-            style="?attr/materialButtonOutlinedStyle"
-            android:layout_width="@dimen/btn_box_size"
-            android:layout_height="@dimen/btn_box_size"
-            android:layout_margin="@dimen/btn_box_margin"
-            android:text="Б" />
+        <LinearLayout
+            android:id="@+id/ll_top"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:orientation="horizontal"
+            app:layout_constraintBottom_toTopOf="@id/ll_bottom"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent">
 
-        <Button
-            android:id="@+id/btn_letter_m"
-            style="?attr/materialButtonOutlinedStyle"
-            android:layout_width="@dimen/btn_box_size"
-            android:layout_height="@dimen/btn_box_size"
-            android:layout_margin="@dimen/btn_box_margin"
-            android:text="М" />
+            <Button
+                android:id="@+id/btn_letter_sh"
+                style="?attr/materialButtonOutlinedStyle"
+                android:layout_width="@dimen/btn_box_size"
+                android:layout_height="@dimen/btn_box_size"
+                android:layout_margin="@dimen/btn_box_margin"
+                android:text="Ш" />
 
-        <Button
-            android:id="@+id/btn_letter_n"
-            style="?attr/materialButtonOutlinedStyle"
-            android:layout_width="@dimen/btn_box_size"
-            android:layout_height="@dimen/btn_box_size"
-            android:layout_margin="@dimen/btn_box_margin"
-            android:text="Н" />
-    </LinearLayout>
+            <Button
+                android:id="@+id/btn_letter_b"
+                style="?attr/materialButtonOutlinedStyle"
+                android:layout_width="@dimen/btn_box_size"
+                android:layout_height="@dimen/btn_box_size"
+                android:layout_margin="@dimen/btn_box_margin"
+                android:text="Б" />
 
-    <LinearLayout
-        android:id="@+id/ll_bottom"
+            <Button
+                android:id="@+id/btn_letter_m"
+                style="?attr/materialButtonOutlinedStyle"
+                android:layout_width="@dimen/btn_box_size"
+                android:layout_height="@dimen/btn_box_size"
+                android:layout_margin="@dimen/btn_box_margin"
+                android:text="М" />
+
+            <Button
+                android:id="@+id/btn_letter_n"
+                style="?attr/materialButtonOutlinedStyle"
+                android:layout_width="@dimen/btn_box_size"
+                android:layout_height="@dimen/btn_box_size"
+                android:layout_margin="@dimen/btn_box_margin"
+                android:text="Н" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/ll_bottom"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:orientation="horizontal"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent">
+
+            <Button
+                android:id="@+id/btn_letter_k"
+                style="?attr/materialButtonOutlinedStyle"
+                android:layout_width="@dimen/btn_box_size"
+                android:layout_height="@dimen/btn_box_size"
+                android:layout_margin="@dimen/btn_box_margin"
+                android:text="К" />
+
+            <Button
+                android:id="@+id/btn_letter_bi"
+                style="?attr/materialButtonOutlinedStyle"
+                android:layout_width="@dimen/btn_box_size"
+                android:layout_height="@dimen/btn_box_size"
+                android:layout_margin="@dimen/btn_box_margin"
+                android:text="Ы" />
+
+            <Button
+                android:id="@+id/btn_letter_i"
+                style="?attr/materialButtonOutlinedStyle"
+                android:layout_width="@dimen/btn_box_size"
+                android:layout_height="@dimen/btn_box_size"
+                android:layout_margin="@dimen/btn_box_margin"
+                android:text="И" />
+
+            <Button
+                android:id="@+id/btn_letter_none"
+                style="?attr/materialButtonOutlinedStyle"
+                android:layout_width="@dimen/btn_box_size"
+                android:layout_height="@dimen/btn_box_size"
+                android:layout_margin="@dimen/btn_box_margin"
+                android:text="\?" />
+
+        </LinearLayout>
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+<!--    results-->
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/cl_results"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:gravity="center"
-        android:orientation="horizontal"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent">
+        android:layout_height="match_parent"
+        android:visibility="gone">
 
         <Button
-            android:id="@+id/btn_letter_k"
-            style="?attr/materialButtonOutlinedStyle"
-            android:layout_width="@dimen/btn_box_size"
-            android:layout_height="@dimen/btn_box_size"
+            android:id="@+id/btn_back"
+            style="@style/Widget.MaterialComponents.Button.Icon"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
             android:layout_margin="@dimen/btn_box_margin"
-            android:text="К" />
+            android:text="На главную"
+            app:icon="@drawable/ic_arrow_left"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
 
-        <Button
-            android:id="@+id/btn_letter_bi"
-            style="?attr/materialButtonOutlinedStyle"
-            android:layout_width="@dimen/btn_box_size"
-            android:layout_height="@dimen/btn_box_size"
-            android:layout_margin="@dimen/btn_box_margin"
-            android:text="Ы" />
+        <TextView
+            android:id="@+id/tv_result_percentage"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="70%"
+            android:textSize="104sp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
 
-        <Button
-            android:id="@+id/btn_letter_i"
-            style="?attr/materialButtonOutlinedStyle"
-            android:layout_width="@dimen/btn_box_size"
-            android:layout_height="@dimen/btn_box_size"
-            android:layout_margin="@dimen/btn_box_margin"
-            android:text="И" />
+        <TextView
+            android:id="@+id/tv_result_text"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Острота зрения правого глаза"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/tv_result_percentage" />
 
-        <Button
-            android:id="@+id/btn_letter_none"
-            style="?attr/materialButtonOutlinedStyle"
-            android:layout_width="@dimen/btn_box_size"
-            android:layout_height="@dimen/btn_box_size"
-            android:layout_margin="@dimen/btn_box_margin"
-            android:text="\?" />
+    </androidx.constraintlayout.widget.ConstraintLayout>
 
-    </LinearLayout>
-
-    <!--    results-->
-
-    <TextView
-        android:id="@+id/tv_result_percentage"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="70%"
-        android:textSize="104sp"
-        android:visibility="gone"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
-
-    <TextView
-        android:id="@+id/tv_result_text"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Острота зрения правого глаза"
-        android:visibility="gone"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/tv_result_percentage" />
-
-
-</androidx.constraintlayout.widget.ConstraintLayout>
+</FrameLayout>

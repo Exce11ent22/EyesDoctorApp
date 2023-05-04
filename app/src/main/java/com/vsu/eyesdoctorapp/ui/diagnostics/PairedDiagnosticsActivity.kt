@@ -83,24 +83,16 @@ class PairedDiagnosticsActivity : AppCompatActivity() {
 
             mainImage.layoutParams = layoutParams
         } else {
-            // show
-            binding.btnBack.isGone = false
-            binding.tvResultPercentage.isGone = false
-            binding.tvResultText.isGone = false
-
-            // hide
-            binding.ivMainLetter.isGone = true
-            binding.llTop.isGone = true
-            binding.llBottom.isGone = true
+            showResultLayout()
         }
     }
 
-    @Deprecated("Deprecated in Java")
-    override fun onBackPressed() {
-        if (sequence.size == 0) {
-            super.onBackPressed()
-        }
-    }
+//    @Deprecated("Deprecated in Java")
+//    override fun onBackPressed() {
+//        if (sequence.size == 0) {
+//            super.onBackPressed()
+//        }
+//    }
 
     private fun configureButtons() {
         binding.btnLetterSh.setOnClickListener {
@@ -132,4 +124,10 @@ class PairedDiagnosticsActivity : AppCompatActivity() {
             onBackPressed()
         }
     }
+
+    private fun showResultLayout() {
+        binding.clInput.isGone = true
+        binding.clResults.isGone = false
+    }
+
 }
