@@ -1,6 +1,6 @@
 package com.vsu.eyesdoctorapp.service.diagnostics
 
-enum class LetterEnum(letter: String) {
+enum class LetterEnum(val letter: String) {
     SH("Ш"),
     B("Б"),
     M("М"),

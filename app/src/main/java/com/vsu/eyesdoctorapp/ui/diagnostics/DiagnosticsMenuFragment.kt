@@ -25,6 +25,7 @@ import com.github.mikephil.charting.data.Entry
 import com.github.mikephil.charting.data.LineData
 import com.github.mikephil.charting.data.LineDataSet
 import com.google.android.material.switchmaterial.SwitchMaterial
+import com.google.android.material.transition.SlideDistanceProvider
 import com.vsu.eyesdoctorapp.R
 import kotlin.math.sin
 
@@ -36,8 +37,14 @@ import kotlin.math.sin
 
 class DiagnosticsMenuFragment : Fragment() {
 
-    private val RECORD_AUDIO_REQ_CODE = 1001
-    private var isPaired = true
+    companion object {
+        private const val RECORD_AUDIO_REQ_CODE = 1001
+
+        const val LEFT_SIDE = "left"
+        const val RIGHT_SIDE = "right"
+        const val DISTANCE = "distance"
+        const val SIDE = "side"
+    }
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -51,14 +58,6 @@ class DiagnosticsMenuFragment : Fragment() {
         super.onViewCreated(view, savedInstanceState)
         drawCharts(view)
 
-        view.findViewById<Button>(R.id.btn_left).setOnClickListener {
-            startDiagnostics(view)
-        }
-        view.findViewById<Button>(R.id.btn_right).setOnClickListener {
-            startDiagnostics(view)
-        }
-
-        // TODO refactor this
         val chooseDistanceSpinner = view.findViewById<Spinner>(R.id.spn_choose_distance)
         ArrayAdapter.createFromResource(
             requireContext(),
@@ -68,6 +67,14 @@ class DiagnosticsMenuFragment : Fragment() {
             adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item)
             chooseDistanceSpinner.adapter = adapter
         }
+
+        view.findViewById<Button>(R.id.btn_left).setOnClickListener {
+            startDiagnostics(view, getDistanceFromSpinner(chooseDistanceSpinner), LEFT_SIDE)
+        }
+        view.findViewById<Button>(R.id.btn_right).setOnClickListener {
+            startDiagnostics(view, getDistanceFromSpinner(chooseDistanceSpinner), RIGHT_SIDE)
+        }
+
     }
 
     private fun drawCharts(view: View) {
@@ -95,27 +102,35 @@ class DiagnosticsMenuFragment : Fragment() {
         rightChart.data = data2
     }
 
-    private fun startDiagnostics(view: View) {
+    private fun startDiagnostics(view: View, distance: Double, side: String) {
         Log.d("SWITCH", "${view.findViewById<SwitchMaterial>(R.id.sw_friend).isChecked}")
         if (view.findViewById<SwitchMaterial>(R.id.sw_friend).isChecked) {
-            startPairedDiagnostics()
+            startPairedDiagnostics(distance, side)
         } else {
-            startSingleDiagnostics()
+            startSingleDiagnostics(distance, side)
         }
     }
 
-    private fun startPairedDiagnostics() {
+    private fun startPairedDiagnostics(distance: Double, side: String) {
         val i = Intent(this.context, PairedDiagnosticsActivity::class.java)
+        val b = Bundle()
+        b.putDouble(DISTANCE, distance)
+        b.putString(SIDE, side)
+        i.putExtras(b)
         startActivity(i)
     }
 
-    private fun startSingleDiagnostics() {
+    private fun startSingleDiagnostics(distance: Double, side: String) {
         when {
             ContextCompat.checkSelfPermission(
                 requireContext(),
                 android.Manifest.permission.RECORD_AUDIO
             ) == PackageManager.PERMISSION_GRANTED -> {
                 val i = Intent(this.context, SingleDiagnosticsActivity::class.java)
+                val b = Bundle()
+                b.putDouble(DISTANCE, distance)
+                b.putString(SIDE, side)
+                i.putExtras(b)
                 startActivity(i)
             }
             shouldShowRequestPermissionRationale(android.Manifest.permission.RECORD_AUDIO) -> {
@@ -141,5 +156,12 @@ class DiagnosticsMenuFragment : Fragment() {
                 )
             }
         }
+    }
+
+    private fun getDistanceFromSpinner(spinner: Spinner) : Double {
+        var distanceStr = spinner.selectedItem.toString()
+        distanceStr = distanceStr.split(" ")[0]
+        Log.d("DISTANCE", distanceStr)
+        return distanceStr.toDouble()
     }
 }

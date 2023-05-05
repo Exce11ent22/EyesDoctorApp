@@ -33,6 +33,7 @@ class SequenceGenerator {
             }
             currentScale -= scaleStep
         }
+        sequence.reverse()
         return sequence
     }
 }

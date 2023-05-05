@@ -9,17 +9,21 @@ import com.vsu.eyesdoctorapp.R
 import com.vsu.eyesdoctorapp.databinding.ActivityPairedDiagnosticsBinding
 import com.vsu.eyesdoctorapp.service.diagnostics.LetterEnum
 import com.vsu.eyesdoctorapp.service.diagnostics.LetterScale
+import com.vsu.eyesdoctorapp.service.diagnostics.ResultCalculator
 import com.vsu.eyesdoctorapp.service.diagnostics.SequenceGenerator
 
 /* TODO
-* 1. Доделать алгоритм результатов
-* 2. получать параметр, какой это глаз*/
+* 1. Сделать сохранение результатов
+* 2. Вынести общие методы в тулзы
+* */
 
 class PairedDiagnosticsActivity : AppCompatActivity() {
 
     private lateinit var binding: ActivityPairedDiagnosticsBinding
     private lateinit var sequenceGenerator: SequenceGenerator
     private lateinit var sequence: ArrayList<LetterScale>
+    private lateinit var resultCalculator: ResultCalculator
+    private var currentIndex = 0
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -31,6 +35,12 @@ class PairedDiagnosticsActivity : AppCompatActivity() {
         // get sequence
         sequenceGenerator = SequenceGenerator.instance
         sequence = sequenceGenerator.generate()
+
+        // initialize the result calculator
+        resultCalculator = ResultCalculator(sequence)
+
+        // set diagnostics layout
+        showDiagnosticsLayout()
 
         // initial image setup
         changeImageBySequence()
@@ -61,20 +71,23 @@ class PairedDiagnosticsActivity : AppCompatActivity() {
     }
 
     private fun getLetterSizeMM(scale: Double): Double {
-        Log.d("SIZE_INFO", "size: ${(7.0 / scale)}; scale: $scale")
-        // TODO full formula
+        if (intent.extras != null) {
+            val distance = intent.extras!!.getDouble(DiagnosticsMenuFragment.DISTANCE)
+            return (7.0 / scale) * (distance / 5.0)
+        }
         return (7.0 / scale)
     }
 
     private fun changeImageBySequence() {
-        if (sequence.size > 0) {
+        if (currentIndex < sequence.size) {
             // get element
-            val currentLetter = sequence.removeLast()
+            val currentLetter = sequence[currentIndex]
 
             // change image
             val mainImage = binding.ivMainLetter
             mainImage.setImageResource(getResourceByLetter(currentLetter.letter))
 
+            // set image size
             val layoutParams = mainImage.layoutParams
 
             val size = getSizeByMM(getLetterSizeMM(currentLetter.scale))
@@ -82,7 +95,11 @@ class PairedDiagnosticsActivity : AppCompatActivity() {
             layoutParams.height = size
 
             mainImage.layoutParams = layoutParams
-        } else {
+        }
+        currentIndex++
+
+        // if results is done -> show results layout
+        if (resultCalculator.isDone()) {
             showResultLayout()
         }
     }
@@ -96,27 +113,35 @@ class PairedDiagnosticsActivity : AppCompatActivity() {
 
     private fun configureButtons() {
         binding.btnLetterSh.setOnClickListener {
+            resultCalculator.input(LetterEnum.SH.letter)
             changeImageBySequence()
         }
         binding.btnLetterB.setOnClickListener {
+            resultCalculator.input(LetterEnum.B.letter)
             changeImageBySequence()
         }
         binding.btnLetterM.setOnClickListener {
+            resultCalculator.input(LetterEnum.M.letter)
             changeImageBySequence()
         }
         binding.btnLetterN.setOnClickListener {
+            resultCalculator.input(LetterEnum.N.letter)
             changeImageBySequence()
         }
         binding.btnLetterK.setOnClickListener {
+            resultCalculator.input(LetterEnum.K.letter)
             changeImageBySequence()
         }
         binding.btnLetterBi.setOnClickListener {
+            resultCalculator.input(LetterEnum.BI.letter)
             changeImageBySequence()
         }
         binding.btnLetterI.setOnClickListener {
+            resultCalculator.input(LetterEnum.I.letter)
             changeImageBySequence()
         }
         binding.btnLetterNone.setOnClickListener {
+            resultCalculator.input("?")
             changeImageBySequence()
         }
 
@@ -126,8 +151,27 @@ class PairedDiagnosticsActivity : AppCompatActivity() {
     }
 
     private fun showResultLayout() {
+        // hide diagnostics layout
         binding.clInput.isGone = true
+
+        // show results layout
         binding.clResults.isGone = false
+
+        // set the results
+        binding.tvResultPercentage.text = getString(R.string.result_percentage, resultCalculator.getResult().toString())
+        if (intent.extras?.getString(DiagnosticsMenuFragment.SIDE) == DiagnosticsMenuFragment.RIGHT_SIDE) {
+            binding.tvResultText.text = getString(R.string.result_side, "правого")
+        } else {
+            binding.tvResultText.text = getString(R.string.result_side, "левого")
+        }
+    }
+
+    private fun showDiagnosticsLayout() {
+        // show diagnostics layout
+        binding.clInput.isGone = false
+
+        // hide results layout
+        binding.clResults.isGone = true
     }
 
 }
