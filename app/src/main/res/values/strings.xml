@@ -8,6 +8,7 @@
 
 <!--    alphabet for table-->
     <string-array name="letters">
+        <item>\?</item>
         <item>Ш</item>
         <item>Б</item>
         <item>М</item>
@@ -15,7 +16,6 @@
         <item>К</item>
         <item>Ы</item>
         <item>И</item>
-        <item>\?</item>
     </string-array>
 
 <!--    distances-->

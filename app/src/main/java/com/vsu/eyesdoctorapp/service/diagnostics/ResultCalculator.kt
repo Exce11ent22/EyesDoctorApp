@@ -40,6 +40,17 @@ class ResultCalculator(private val originalSeq: ArrayList<LetterScale>) {
         return remaining == SequenceGenerator.letterPerScale && wasMistake
     }
 
-    //todo static result calculator method
+    class Answers(private val n: Int){
+
+        var answers = generateAnswers()
+        private fun generateAnswers() : ArrayList<String>{
+            val answers = ArrayList<String>()
+            for (i in 0 until n){
+                answers.add("?")
+            }
+            return answers
+        }
+
+    }
 
 }
