@@ -6,7 +6,7 @@
 
     <string name="letter_number">Буква №%d</string>
 
-<!--    alphabet for table-->
+    <!--    alphabet for table-->
     <string-array name="letters">
         <item>\?</item>
         <item>Ш</item>
@@ -18,7 +18,11 @@
         <item>И</item>
     </string-array>
 
-<!--    distances-->
+    <!--    dialog resources-->
+    <string name="dlg_paired_diagnostics_header">Внимание!</string>
+    <string name="dlg_paired_diagnostics_instruction">Вам необходимо расположиться на заданном расстоянии и громко, вслух произносить то, что видите. Далее идет ручная подстановка данных.</string>
+    <string name="dlg_paired_diagnostics_ok">Хорошо</string>
+    <!--    distances-->
     <string-array name="distances">
         <item>5 м</item>
         <item>4.5 м</item>
@@ -33,6 +37,19 @@
 
     <!--    diagnostics resources-->
     <string name="diagnostic_alphabet">ШБМНКЫИ</string>
-    <!-- TODO: Remove or change this placeholder text -->
-    <string name="hello_blank_fragment">Hello blank fragment</string>
+
+
+    <!--    exercises description-->
+    <string name="blinking_description">Моргание. Это упражнение позволяет восстановить кровообращение. Моргайте по звуковому сигналу.</string>
+    <string name="up_down_description">Движения вверх и вниз. Примите положение сидя. Выпрямите спину. Повторяйте движения глазами за инструкциями.</string>
+    <string name="left_right_description">Движения вправо и влево. Примите положение сидя. Выпрямите спину. Повторяйте движения глазами за инструкциями.</string>
+    <string name="zig_zag_description">Движения по углам. Примите положение сидя. Выпрямите спину. Повторяйте движения глазами за инструкциями.</string>
+    <string name="circle_right_description">Круговое движение по часовой стрелке. Примите положение сидя. Выпрямите спину. Делайте полное круговое движение за один звуковой сигнал.</string>
+    <string name="circle_left_description">Круговое движение против часовой стрелки. Примите положение сидя. Выпрямите спину. Делайте полное круговое движение за один звуковой сигнал.</string>
+    <string name="close_open_description">Зажмуривание. Примите положение сидя. Выпрямите спину. Повторяйте движения глазами за инструкциями.</string>
+
+    <!--    recommendation template-->
+    <string name="recommendation1">Согласно последним измерениям: ваше зрение ухудшается! Обратитесь к специалисту.</string>
+    <string name="recommendation2">На этой неделе вы выполняли упражнения слишком редко!</string>
+    <string name="recommendation3">Вы превысили суточную норму использования смартфона! Пройдите разминочный комплекс упражнений.</string>
 </resources>

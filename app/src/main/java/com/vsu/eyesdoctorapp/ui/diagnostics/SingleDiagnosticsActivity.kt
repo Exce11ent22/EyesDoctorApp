@@ -125,7 +125,7 @@ class SingleDiagnosticsActivity : AppCompatActivity() {
         object : CountDownTimer(5000, 100) {
 
             override fun onTick(p0: Long) {
-                binding.tvTimer.text = String.format("TIMER %.1f s", p0.toDouble() / 1000)
+                binding.tvTimer.text = String.format("%.1f s", p0.toDouble() / 1000)
             }
 
             override fun onFinish() {
@@ -186,7 +186,7 @@ class SingleDiagnosticsActivity : AppCompatActivity() {
         binding.clInput.isGone = true
         binding.clResults.isGone = true
 
-        val startTimer = object : CountDownTimer(5000, 1000) {
+        val startTimer = object : CountDownTimer(10000, 1000) {
             override fun onTick(p0: Long) {
                 val t = p0 + 1000
                 binding.tvStartTimer.text = "${(t / 1000)}"
@@ -198,9 +198,10 @@ class SingleDiagnosticsActivity : AppCompatActivity() {
         }
 
         val builder = AlertDialog.Builder(this)
-        builder.setTitle("Внимание!")
-        builder.setMessage("Спасибо за внимание!")
-        builder.setPositiveButton("Хорошо") { dialogInterface: DialogInterface, i: Int ->
+        builder.setTitle(getString(R.string.dlg_paired_diagnostics_header))
+        builder.setMessage(getString(R.string.dlg_paired_diagnostics_instruction))
+        builder.setPositiveButton(R.string.dlg_paired_diagnostics_ok)
+        { dialogInterface: DialogInterface, i: Int ->
             dialogInterface.cancel()
             startTimer.start()
         }

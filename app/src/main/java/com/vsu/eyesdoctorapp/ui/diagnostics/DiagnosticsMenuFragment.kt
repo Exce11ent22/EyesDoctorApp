@@ -77,31 +77,6 @@ class DiagnosticsMenuFragment : Fragment() {
 
     }
 
-    private fun drawCharts(view: View) {
-        val leftChart: LineChart = view.findViewById(R.id.lc_left)
-        val rightChart: LineChart = view.findViewById(R.id.lc_right)
-
-        val dataList = ArrayList<Entry>()
-        val dataList2 = ArrayList<Entry>()
-
-        for (i in 1..100) {
-            dataList.add(Entry(i.toFloat(), sin(i.toFloat()/10)))
-            dataList2.add(Entry(i.toFloat(), sin(i.toFloat()/4)))
-        }
-        val lineDataSet = LineDataSet(dataList, "Последние N измерений")
-        val lineDataSet2 = LineDataSet(dataList2, "Последние N измерений")
-        val data = LineData(lineDataSet)
-        val data2 = LineData(lineDataSet2)
-        leftChart.animateX(3000, Easing.EaseOutSine)
-        rightChart.animateX(4500, Easing.EaseInSine)
-
-        leftChart.description.isEnabled = false
-        rightChart.description.isEnabled = false
-
-        leftChart.data = data
-        rightChart.data = data2
-    }
-
     private fun startDiagnostics(view: View, distance: Double, side: String) {
         Log.d("SWITCH", "${view.findViewById<SwitchMaterial>(R.id.sw_friend).isChecked}")
         if (view.findViewById<SwitchMaterial>(R.id.sw_friend).isChecked) {
@@ -163,5 +138,66 @@ class DiagnosticsMenuFragment : Fragment() {
         distanceStr = distanceStr.split(" ")[0]
         Log.d("DISTANCE", distanceStr)
         return distanceStr.toDouble()
+    }
+
+    private fun drawCharts(view: View) {
+        val leftChart: LineChart = view.findViewById(R.id.lc_left)
+        val rightChart: LineChart = view.findViewById(R.id.lc_right)
+
+        val dataList = getDiagnosticsData1()
+        val dataList2 = getDiagnosticsData2()
+
+        val lineDataSet = LineDataSet(dataList, "Последние ${dataList.size} измерений")
+        val lineDataSet2 = LineDataSet(dataList2, "Последние ${dataList2.size} измерений")
+        val data = LineData(lineDataSet)
+        val data2 = LineData(lineDataSet2)
+        leftChart.animateX(1400, Easing.EaseInOutQuad)
+        rightChart.animateX(1400, Easing.EaseInOutQuad)
+
+        leftChart.description.isEnabled = false
+        rightChart.description.isEnabled = false
+
+        leftChart.data = data
+        rightChart.data = data2
+    }
+
+    private fun getDiagnosticsData1() : ArrayList<Entry> {
+        val dataList = ArrayList<Entry>()
+        dataList.add(Entry(1f, 83f))
+        dataList.add(Entry(2f, 80f))
+        dataList.add(Entry(3f, 80f))
+        dataList.add(Entry(4f, 80f))
+        dataList.add(Entry(5f, 76f))
+        dataList.add(Entry(6f, 70f))
+        dataList.add(Entry(7f, 70f))
+        dataList.add(Entry(8f, 70f))
+        dataList.add(Entry(9f, 76f))
+        dataList.add(Entry(10f, 66f))
+        dataList.add(Entry(11f, 63f))
+        dataList.add(Entry(12f, 60f))
+        dataList.add(Entry(13f, 60f))
+        dataList.add(Entry(14f, 56f))
+        dataList.add(Entry(15f, 56f))
+        return dataList
+    }
+
+    private fun getDiagnosticsData2() : ArrayList<Entry> {
+        val dataList = ArrayList<Entry>()
+        dataList.add(Entry(1f, 73f))
+        dataList.add(Entry(2f, 70f))
+        dataList.add(Entry(3f, 70f))
+        dataList.add(Entry(4f, 66f))
+        dataList.add(Entry(5f, 66f))
+        dataList.add(Entry(6f, 60f))
+        dataList.add(Entry(7f, 60f))
+        dataList.add(Entry(8f, 60f))
+        dataList.add(Entry(9f, 50f))
+        dataList.add(Entry(10f, 50f))
+        dataList.add(Entry(11f, 46f))
+        dataList.add(Entry(12f, 46f))
+        dataList.add(Entry(13f, 46f))
+        dataList.add(Entry(14f, 40f))
+        dataList.add(Entry(15f, 40f))
+        return dataList
     }
 }
